@@ -1,7 +1,6 @@
 package com.lgi.ee.controller;
 
 import com.lgi.ee.entity.Employee;
-import com.lgi.ee.repository.EmployeeRepository;
 import com.lgi.ee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Kalpana Pochareddy
  */
 
+@CrossOrigin(origins = "http://18.169.165.162:4200", allowedHeaders = "*")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
