@@ -6,6 +6,7 @@ import com.lgi.ee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -46,5 +47,10 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Employee updateEmployee(String employeeId, Employee employee) {
         return employeeRepository.update(employeeId, employee);
+    }
+
+    @Override
+    public List<Employee> fetchAllEmployee() {
+        return employeeRepository.getAllEmployees();
     }
 }

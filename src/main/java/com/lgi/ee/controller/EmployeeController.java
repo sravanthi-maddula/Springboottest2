@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * This controller used to retrieve, add and delete employee details
  *
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://18.169.165.162:4200", allowedHeaders = "*")
 @RestController
-@RequestMapping("/employee")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -24,24 +25,29 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping
+    @PostMapping("/employee")
     @ResponseStatus(HttpStatus.CREATED)
     public Employee saveEmployee(@RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/employee/{id}")
     public Employee getEmployee(@PathVariable("id") String employeeId) {
         return employeeService.fetchEmployee(employeeId);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/employee/{id}")
     public String deleteEmployee(@PathVariable("id") String employeeId) {
         return  employeeService.deleteEmployee(employeeId);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/employee/{id}")
     public Employee updateEmployee(@PathVariable("id") String employeeId, @RequestBody Employee employee) {
         return employeeService.updateEmployee(employeeId,employee);
+    }
+
+    @GetMapping("/employees")
+    public List<Employee> getAllEmployees() {
+        return employeeService.fetchAllEmployee();
     }
 }
